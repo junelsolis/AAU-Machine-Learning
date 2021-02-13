@@ -22,7 +22,7 @@ The dataset is a subset of the Sentiment140 dataset from Stanford University con
 
 There were some tweets that exceeded the traditional Twitter character limit of 140. While Twitter now allows tweets to be up to 280 characters, the decision was made nevertheless to drop rows exceeding 140 characters from the dataset. The sample size was randomly reduced to 70,000 samples to reduce processing and training times. The _sentiment_label_ rows were converted to either **[0,1]**
 
-Some tweets contained encoded HTML in the form of **`&amp;`** and **`&quot;`** which appeared quite significantly in a word cloud of both the positive and negative tweets. These were decoded into their real-character strings **&** and **"** respectively. Some experimentation was done with lemmatization and stemming of entire sentences, but these did not seem to have a positive effect in the testing performance of either model.
+Some tweets contained encoded HTML in the form of **`&amp;`** and **`&quot;`** which appeared very frequently in a word cloud of both the positive and negative tweets. These were decoded into their real-character strings **&** and **"** respectively. Some experimentation was done with lemmatization and stemming of entire sentences, but these did not seem to have a positive effect in the testing performance of either model and was eventually left out of the cleaning pipeline.
 
 Further cleaning of the **tweet_text** rows included the following:
 
@@ -78,9 +78,6 @@ Trainable params: 2,096,386
 Non-trainable params: 0
 _________________________________________________________________
 ```
-
-✅
-❌
 
 ## Predictions with some example tweets
 
