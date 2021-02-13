@@ -58,6 +58,11 @@ The SVM classifier model achieved an accuracy of ~76.6% with minimal time elapse
 
 During training it was also observed that validation loss started to increase and validation accuracy started to decrease around 6 epochs and therefore the training epochs was limited to this number.
 
+![](lstm_loss.png)![](lstm_accuracy.png)
+
+✅
+❌
+
 ### LSTM test with select tweets
 
 # Discussion
