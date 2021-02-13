@@ -16,13 +16,13 @@ In this exercise, two models have been selected:
 
 # Data Processing
 
-The dataset is a subset of the Sentiment140 containing 1.6 million samples. The actual dataset provided for this task contained a fraction of the total samples - 160,000. This dataset contained two columns: _tweet_text_ and its corresponding _sentiment_label_. The _tweet_text_ column contained the original tweet including hashtags, RTs, mentions, emojis, HTML code and URLs.
+The dataset is a subset of the Sentiment140 dataset from Stanford University containing 1.6 million samples. The actual dataset provided for this task contained a fraction of the total samples - 160,000. This dataset contained two columns: _tweet_text_ and its corresponding _sentiment_label_. The _tweet_text_ column contained the original tweet including hashtags, RTs, mentions, emojis, HTML code and URLs.
 
 ### Cleaning
 
 There were some tweets that exceeded the traditional Twitter character limit of 140. While Twitter now allows tweets to be up to 280 characters, the decision was made nevertheless to drop rows exceeding 140 characters from the dataset. The sample size was randomly reduced to 70,000 samples to reduce processing and training times. The _sentiment_label_ rows were converted to either **[0,1]**
 
-Some tweets contained encoded HTML in the form of **`&amp;`** and **`&quot;`** which appeared quite significantly in a word cloud of both the positive and negative tweets. These were decoded into their actual-character strings **&** and **"** respectively. Some experimentation was done with lemmatization and stemming of entire sentences, but these did not seem to have a positive effect in the validation performances of either model.
+Some tweets contained encoded HTML in the form of **`&amp;`** and **`&quot;`** which appeared quite significantly in a word cloud of both the positive and negative tweets. These were decoded into their real-character strings **&** and **"** respectively. Some experimentation was done with lemmatization and stemming of entire sentences, but these did not seem to have a positive effect in the testing performance of either model.
 
 Further cleaning of the **tweet_text** rows included the following:
 
@@ -48,13 +48,17 @@ The choice to use an SVM classifier and an LSTM recurrent neural network was bas
 
 It was quite simple to vectorize the SVM dataset with 2000 maximum features and fit the model using the Keras API.
 
-While an SVM classifier is relatively simple, an LSTM network is much more complex in that its node layers not only pass information forward but also have mechanisms to provide recurrent feedback to previous layers.
+While an SVM classifier is relatively simple, an LSTM network is much more complex in that its node layers not only pass information forward but also have mechanisms to provide recurrent feedback to previous layers. Hyperparameter tuning was also performed on the LSTM network using the Keras Tuner API in order to help derive optimum values for the number of units in the RNN layers, learning rate and dropout rates.
 
 # Results
 
 The SVM classifier model achieved an accuracy of ~76.6% with minimal time elapsed for fitting the data. In contrast, the accuracy of the LSTM model was significantly higher at ~83.5%. A graph showing the comparison is shown below.
 
 ![](model_accuracy.png)
+
+During training it was also observed that validation loss started to increase and validation accuracy started to decrease around 6 epochs and therefore the training epochs was limited to this number.
+
+### LSTM test with select tweets
 
 # Discussion
 
@@ -64,4 +68,4 @@ Because of its nature, language data is highly variable and requires one to exam
 
 # Conclusions
 
-The SVM classifier model's accuracy of ~76.6% was outperformed by the LSTM model with its ~83.5% accuracy.
+The SVM classifier model's accuracy of **~76.6%** was outperformed by the LSTM model with its **~83.5%** accuracy.
