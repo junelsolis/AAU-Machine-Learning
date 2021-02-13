@@ -56,14 +56,64 @@ The SVM classifier model achieved an accuracy of ~76.6% with minimal time elapse
 
 ![](model_accuracy.png)
 
-During training it was also observed that validation loss started to increase and validation accuracy started to decrease around 6 epochs and therefore the training epochs was limited to this number. The model architecture is also shown below.
+During training it was also observed that validation loss started to increase and validation accuracy started to decrease around 6 epochs and therefore the training epochs was limited to this number. Note the quick loss increase after epoch 5. The model architecture is also shown.
 
 ![](lstm_loss.png)![](lstm_accuracy.png)
+
+```
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+embedding (Embedding)        (None, 31, 200)           1000000
+_________________________________________________________________
+lstm (LSTM)                  (None, 31, 256)           467968
+_________________________________________________________________
+lstm_1 (LSTM)                (None, 288)               627840
+_________________________________________________________________
+dense (Dense)                (None, 2)                 578
+=================================================================
+Total params: 2,096,386
+Trainable params: 2,096,386
+Non-trainable params: 0
+_________________________________________________________________
+```
 
 ✅
 ❌
 
-### LSTM test with select tweets
+## Predictions with some example tweets
+
+### @realdonaldtrump
+
+> Crazy Joe Biden is trying to act like a tough guy. Actually, he is weak, both mentally and physically, and yet he threatens me, for the second time, with physical assault. He doesn’t know me, but he would go down fast and hard, crying all the way. Don’t threaten people Joe!
+
+- SVC Prediction: **Negative** ✅
+- LSTM Prediction: **Negative** ✅
+
+> Sorry losers and haters, but my I.Q. is one of the highest -and you all know it! Please don’t feel so stupid or insecure,it’s not your fault
+
+- SVC Prediction: **Negative** ✅
+- LSTM Prediction: **Negative** ✅
+
+### @JoeBiden
+
+> President of the United States, husband to @DrBiden, proud father & grandfather. Ready to build back better for all Americans.
+
+- SVC Prediction: **Positive** ✅
+- LSTM Prediction: **Positive** ✅
+
+### @BarackObama
+
+> No one is born hating another person because of the color of his skin or his background or his religion...
+
+- SVC Prediction: **Positive** ✅
+- LSTM Prediction: **Positive** ✅
+
+> It's been the honor of my life to serve you. You made me a better leader and a better man.
+
+- SVC Prediction: **Positive** ✅
+- LSTM Prediction: **Positive** ✅
 
 # Discussion
 
@@ -71,6 +121,8 @@ Lack of experience was a major bottleneck in accomplishing this task, but it was
 
 Because of its nature, language data is highly variable and requires one to examine the raw dataset more fully in order to identify patterns early on that offer a possibility for correction or normalization. An example of this were the encoded HTML present in the tweets. Decoding that HTML afforded a small increase in accuracy for both models.
 
+While it is a good to observe a model with high predictive power, it may not be sufficient to rely solely on the predictions of one model. It is even better when there is agreement between models because that increases the confidence in the predicted result.
+
 # Conclusions
 
-The SVM classifier model's accuracy of **~76.6%** was outperformed by the LSTM model with its **~84.9%** accuracy. A secondary conclusion that may be made is that considerable amounts of time must be spent fine-tuning a model's settings as well as in data preprocessing in order to get consistent and reliable predictions.
+The SVM classifier model's accuracy of **~76.6%** was outperformed by the LSTM model with its **~84.9%** accuracy. A conclusion may also be made that considerable amounts of time must be spent fine-tuning a model's parameters as well as in data preprocessing in order to get consistent and reliable predictions.
