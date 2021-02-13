@@ -48,11 +48,11 @@ The choice to use an SVM classifier and an LSTM recurrent neural network was bas
 
 It was quite simple to vectorize the SVM dataset with 2000 maximum features and fit the model using the Keras API.
 
-While an SVM classifier is relatively simple, an LSTM network is much more complex in that its node layers not only pass information forward but also have mechanisms to provide recurrent feedback to previous layers. Hyperparameter tuning was also performed on the LSTM network using the Keras Tuner API in order to help derive optimum values for the number of units in the RNN layers, learning rate and dropout rates.
+While an SVM classifier is relatively simple, an LSTM network is much more complex in that its node layers not only pass information forward but also have mechanisms to provide recurrent feedback to previous layers. Hyperparameter tuning was also performed on the LSTM network using the Keras Tuner API in order to help derive optimum values for the number of units in the RNN layers and the learning rate. Attempts were made to perform automatic tuning of the dropout and recurrent dropout rates of the LSTM layers but these attempts yielded inferior performance and were eventually tuned manually.
 
 # Results
 
-The SVM classifier model achieved an accuracy of ~76.6% with minimal time elapsed for fitting the data. In contrast, the accuracy of the LSTM model was significantly higher at ~84.9%. A graph comparing the model accuracies the comparison is shown below.
+The SVM classifier model achieved an accuracy of ~76.6% with minimal time elapsed for fitting the data. In contrast, the accuracy of the LSTM model was significantly higher at ~84.9%. A graph comparing the model accuracies is shown below.
 
 ![](model_accuracy.png)
 
@@ -120,7 +120,7 @@ A lack of experience was a major bottleneck in accomplishing this task, but it w
 
 Because of its nature, language data is highly variable and requires one to examine the raw dataset more fully in order to identify patterns early on that offer a possibility for correction or normalization. An example of this were the encoded HTML present in the tweets. Decoding those HTML snippets resulted in a small increase in accuracy for both models.
 
-One aspect that I think might have improved the accuracy of these models is to add spelling correction during the preprocessing phase. This was attempted a few times over the course of the task but I was unable to scale the available spelling correction libraries to such a large dataset. Perhaps a future improvement to the preprocessing phase should include splitting the dataset into smaller batches and performing the spelling checks on those batches so as to bypass the enormous memory requirements.
+One aspect that might have improved the accuracy of these models is to add spelling correction during the preprocessing phase. This was attempted a few times over the course of the task but I was unable to scale the available spelling correction libraries to such a large dataset. Perhaps a future improvement to the preprocessing phase should include splitting the dataset into smaller batches and performing the spelling checks on those batches so as to bypass the enormous memory requirements.
 
 While it is a good to observe a model with high predictive power, it may not be sufficient to rely solely on the predictions of one model. It is even better when there is agreement between models because that increases the confidence in the predicted result.
 
