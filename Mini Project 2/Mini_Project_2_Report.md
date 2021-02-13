@@ -16,7 +16,7 @@ In this exercise, two models have been selected:
 
 # Data Processing
 
-The dataset is a subset of the Sentiment140 dataset from Stanford University containing 1.6 million samples. The actual dataset provided for this task contained a fraction of the total samples - 160,000. This dataset contained two columns: _tweet_text_ and its corresponding _sentiment_label_. The _tweet_text_ column contained the original tweet including hashtags, RTs, mentions, emojis, HTML code and URLs.
+The dataset is a subset of the Sentiment140 dataset from Stanford University containing 1.6 million samples. The actual dataset provided for this task contained a fraction of the total samples - 160,000 exactly. This dataset contained two columns: _tweet_text_ and its corresponding _sentiment_label_. The _tweet_text_ column contained the original tweet including hashtags, RTs, mentions, emojis, HTML code and URLs.
 
 ### Cleaning
 
@@ -84,6 +84,8 @@ _________________________________________________________________
 
 ## Predictions with some example tweets
 
+The following are example tweets taken from official Twitter feeds and showcases a little the predictive power of both models trained during this task. A checkmark ✅ next to the sentiment indicates that the prediction is correct.
+
 ### @realdonaldtrump
 
 > Crazy Joe Biden is trying to act like a tough guy. Actually, he is weak, both mentally and physically, and yet he threatens me, for the second time, with physical assault. He doesn’t know me, but he would go down fast and hard, crying all the way. Don’t threaten people Joe!
@@ -117,12 +119,18 @@ _________________________________________________________________
 
 # Discussion
 
-Lack of experience was a major bottleneck in accomplishing this task, but it was an opportunity to learn about natural language processing and how vectorization is required in order for text content to be fed into machine and deep learning algorithms. In this regard, a very significant portion of time was used in researching the two models used as well as the concepts surrounding text vectorization.
+A lack of experience was a major bottleneck in accomplishing this task, but it was an opportunity to learn about natural language processing and how vectorization is required in order for text content to be fed into machine and deep learning algorithms. In this regard, a very significant portion of time was used in researching the two models used as well as the concepts surrounding text vectorization.
 
-Because of its nature, language data is highly variable and requires one to examine the raw dataset more fully in order to identify patterns early on that offer a possibility for correction or normalization. An example of this were the encoded HTML present in the tweets. Decoding that HTML afforded a small increase in accuracy for both models.
+Because of its nature, language data is highly variable and requires one to examine the raw dataset more fully in order to identify patterns early on that offer a possibility for correction or normalization. An example of this were the encoded HTML present in the tweets. Decoding those HTML snippets resulted in a small increase in accuracy for both models.
+
+One aspect that I think might have improved the accuracy of these models is to add spelling correction during the preprocessing phase. This was attempted a few times over the course of the task but I was unable to scale the available spelling correction libraries to such a large dataset. Perhaps a future improvement to the preprocessing phase should include splitting the dataset into smaller batches and performing the spelling checks on those batches so as to bypass the enormous memory requirements.
 
 While it is a good to observe a model with high predictive power, it may not be sufficient to rely solely on the predictions of one model. It is even better when there is agreement between models because that increases the confidence in the predicted result.
 
 # Conclusions
 
-The SVM classifier model's accuracy of **~76.6%** was outperformed by the LSTM model with its **~84.9%** accuracy. A conclusion may also be made that considerable amounts of time must be spent fine-tuning a model's parameters as well as in data preprocessing in order to get consistent and reliable predictions.
+The SVM classifier model's accuracy of **~76.6%** was outperformed by the LSTM model with its **~84.9%** accuracy.
+
+A conclusion may also be made that considerable amounts of time must be spent fine-tuning a model's parameters as well as in data preprocessing in order to get consistent and reliable predictions.
+
+Overall, this was a very worthwhile exercise to perform as it encouraged a deeper look into natural language processing, text vectorization, recurrent neural networks and hyperparameter tuning using the Keras Tuner API.
