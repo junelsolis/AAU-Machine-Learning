@@ -52,11 +52,11 @@ While an SVM classifier is relatively simple, an LSTM network is much more compl
 
 # Results
 
-The SVM classifier model achieved an accuracy of ~76.6% with minimal time elapsed for fitting the data. In contrast, the accuracy of the LSTM model was significantly higher at ~83.5%. A graph showing the comparison is shown below.
+The SVM classifier model achieved an accuracy of ~76.6% with minimal time elapsed for fitting the data. In contrast, the accuracy of the LSTM model was significantly higher at ~84.9%. A graph comparing the model accuracies the comparison is shown below.
 
 ![](model_accuracy.png)
 
-During training it was also observed that validation loss started to increase and validation accuracy started to decrease around 6 epochs and therefore the training epochs was limited to this number.
+During training it was also observed that validation loss started to increase and validation accuracy started to decrease around 6 epochs and therefore the training epochs was limited to this number. The model architecture is also shown below.
 
 ![](lstm_loss.png)![](lstm_accuracy.png)
 
@@ -69,8 +69,8 @@ During training it was also observed that validation loss started to increase an
 
 Lack of experience was a major bottleneck in accomplishing this task, but it was an opportunity to learn about natural language processing and how vectorization is required in order for text content to be fed into machine and deep learning algorithms. In this regard, a very significant portion of time was used in researching the two models used as well as the concepts surrounding text vectorization.
 
-Because of its nature, language data is highly variable and requires one to examine the raw dataset more fully in order to identify patterns early on that offer a possibility for correction or normalization. An example of this were the encoded HTML and the 140+ character
+Because of its nature, language data is highly variable and requires one to examine the raw dataset more fully in order to identify patterns early on that offer a possibility for correction or normalization. An example of this were the encoded HTML present in the tweets. Decoding that HTML afforded a small increase in accuracy for both models.
 
 # Conclusions
 
-The SVM classifier model's accuracy of **~76.6%** was outperformed by the LSTM model with its **~83.5%** accuracy.
+The SVM classifier model's accuracy of **~76.6%** was outperformed by the LSTM model with its **~84.9%** accuracy. A secondary conclusion that may be made is that considerable amounts of time must be spent fine-tuning a model's settings as well as in data preprocessing in order to get consistent and reliable predictions.
